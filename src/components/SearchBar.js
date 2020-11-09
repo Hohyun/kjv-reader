@@ -4,7 +4,7 @@ class SearchBar extends React.Component {
     state = { term: '' }
 
     onInputChange = e => {
-        this.setState({ term: e.target.value });
+        this.setState({ term: e.target.value.replace(/\s+/g, '/') });
     }
 
     onFormSubmit = e => {

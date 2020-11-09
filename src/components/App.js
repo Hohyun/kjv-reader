@@ -7,9 +7,7 @@ class App extends React.Component {
     state = { verses: [] }
 
     onSearchSubmit = async (term) =>  {
-        const adrs = 'http://localhost:3001/' + term.replace(/\s+/g, '/');
-
-        const response = await axios.get(adrs);
+        const response = await axios.get('http://localhost:3001/' + term);
         this.setState({ verses: response.data })
     }
 
