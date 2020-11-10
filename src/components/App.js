@@ -35,30 +35,16 @@ class App extends React.Component {
     render() {
         return (
             <div className="ui container" style={{ marginTop: '10px' }}> 
-                <SearchBar onSubmit={this.onSearchSubmit} />
-                
-                        <div className="ui segment">
-                            <VerseList verses={this.state.verses} lang="eng"/>
-                            <button  
-                                className="ui secondary basic button"
-                                onClick={() => this.onButtonClick('eng')} 
-                            >
-                            <i className="copy icon"></i>
-                                Copy
-                            </button>
-                            <div className="ui horizontal label">{this.state.copyMsgEng}</div>
-                        </div>
-                        <div className="ui segment">
-                            <VerseList verses={this.state.verses} lang="kor"/>
-                            <button 
-                                className="ui secondary basic button"
-                                onClick={() => this.onButtonClick('kor')}
-                            >
-                                <i className="copy icon"></i>
-                                Copy
-                            </button>
-                            <div className="ui horizontal label">{this.state.copyMsgKor}</div>
-                        </div>
+                <SearchBar onSubmit={this.onSearchSubmit} />    
+
+                <div className="ui segment">
+                    <VerseList verses={this.state.verses} lang="eng"/>
+                    <CopyButton lang='eng' msg={this.state.copyMsgEng} onClick={this.onButtonClick} />
+                </div>
+                <div className="ui segment">
+                    <VerseList verses={this.state.verses} lang="kor"/>
+                    <CopyButton lang='kor' msg={this.state.copyMsgKor} onClick={this.onButtonClick} />
+                </div>
             </div>
         );
     }
