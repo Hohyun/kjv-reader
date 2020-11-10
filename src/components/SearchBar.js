@@ -1,36 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-class SearchBar extends React.Component {
-    state = { term: '' }
+const SearchBar = (props) => {
+    const [term, setTerm] = useState('');
 
-    onInputChange = e => {
-        this.setState({ term: e.target.value.replace(/\s+/g, '/') });
+    const onInputChange = e => {
+        setTerm(e.target.value.replace(/\s+/g, '/'));
     }
 
-    onFormSubmit = e => {
+    const onFormSubmit = e => {
         e.preventDefault();
-        this.props.onSubmit(this.state.term);
+        props.onSubmit(term);
     }
 
-    render() {
-        return (
-            <div className="ui segment">
-                <form onSubmit={this.onFormSubmit} className="ui form">
-                    <div className="ui field">
-                        <label>Bible Search</label>
-                    <input 
+    return (
+        <div className="ui segment">
+            <form onSubmit={(e) => onFormSubmit(e)} className="ui form">
+                <div className="ui field">
+                    <label>Bible Search</label>
+                <input 
                         type="text" 
                         placeholder="Gn 1 1 5 => Genesis 1:1~5"
-                        value={this.state.term} 
-                        onChange={this.onInputChange}
-                    >
-                    </input>
-                    </div>
- 
-                </form>
-            </div>
-        )
-    }
+                        value={term} 
+                        onChange={(e) => onInputChange(e)}
+                >
+                </input>
+                </div>
+            </form>
+        </div>
+    );
 }
 
 export default SearchBar;
